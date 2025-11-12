@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>موقعي | صفحة تعريفية بسيطة</title>
+  <meta name="description" content="قالب صفحة هبوط عربية جاهزة للتعديل والنشر.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    @font-face {
+      font-family: 'Tajawal';
+      src: local('Tajawal'), local('Tajawal-Regular');
+    }
+    :root{
+      --bg:#0f1216;
+      --card:#151a21;
+      --muted:#9aa4af;
+      --text:#e9eef4;
+      --brand:#43b581;
+      --brand-weak:#2f8d65;
+      --ring: rgba(67,181,129,.35);
+      --radius:14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Tajawal', system-ui, -apple-system, Segoe UI, Roboto, Noto Naskh Arabic, Arial, sans-serif;
+      background:radial-gradient(1200px 700px at 80% -100px, #1b2230 0%, transparent 60%), var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin-inline:auto;padding:0 20px}
+    header{
+      position:sticky;top:0;background:rgba(15,18,22,.8);backdrop-filter:blur(10px);
+      border-bottom:1px solid #1f2730; z-index:1000
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .logo{display:flex;gap:10px;align-items:center;font-weight:700}
+    .logo .dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
+    .links{display:flex;gap:18px;align-items:center}
+    .links a{padding:8px 12px;border-radius:10px}
+    .links a:hover{background:#1a2029}
+    .menu-btn{display:none;background:#1a2029;border:1px solid #273141;border-radius:10px;padding:8px 12px;color:var(--text)}
+    @media (max-width:800px){
+      .links{display:none}
+      .menu-btn{display:inline-block}
+      .mobile{display:none;position:absolute;right:20px;left:20px;top:70px;background:#0f1319;border:1px solid #1f2730;border-radius:14px;box-shadow:var(--shadow)}
+      .mobile a{display:block;padding:14px;border-bottom:1px solid #1c222b}
+      .mobile a:last-child{border-bottom:none}
+      .mobile.show{display:block}
+    }
+
+    .hero{padding:72px 0 54px}
+    .hero h1{font-size: clamp(28px, 5vw, 44px); margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 22px}
+    .btn{
+      display:inline-block;background:linear-gradient(180deg, var(--brand), var(--brand-weak));
+      padding:12px 18px;border-radius:12px;color:#02130c;font-weight:700;border:1px solid #2a8e68;box-shadow:0 8px 20px var(--ring)
+    }
+    .btn:hover{filter:brightness(1.05)}
+    .grid{
+      display:grid;gap:18px;grid-template-columns: repeat(12, 1fr)
+    }
+    .col-6{grid-column: span 6}
+    .col-4{grid-column: span 4}
+    .col-12{grid-column: span 12}
+    @media (max-width:900px){
+      .col-6,.col-4{grid-column: span 12}
+    }
+    .card{
+      background:linear-gradient(180deg, #121822, #0e1218);
+      border:1px solid #1f2730;border-radius: var(--radius); padding:22px; box-shadow: var(--shadow)
+    }
+    .tag{display:inline-flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);border:1px solid #263141;border-radius:999px;padding:6px 10px}
+    .tag .dot{width:7px;height:7px;border-radius:50%;background:var(--brand)}
+    .sec{padding:34px 0}
+    .sec h2{margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .feature{display:flex;gap:14px;align-items:flex-start}
+    .feature .ic{width:36px;height:36px;border-radius:10px;background:#1a2230;display:grid;place-items:center;border:1px solid #223042}
+    .gallery{display:grid;gap:10px;grid-template-columns: repeat(2, 1fr)}
+    .gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid #1f2730}
+    footer{padding:30px 0;color:var(--muted);border-top:1px solid #1f2730;margin-top:28px}
+    form .row{display:grid;gap:12px;grid-template-columns: 1fr 1fr}
+    form input, form textarea{
+      width:100%;padding:12px;border-radius:12px;background:#0d1117;border:1px solid #202837;color:var(--text)
+    }
+    form textarea{min-height:120px;resize:vertical}
+    form button{margin-top:6px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><span class="dot"></span> <span>موقعي</span></div>
+        <div class="links">
+          <a href="#about">من نحن</a>
+          <a href="#services">الخدمات</a>
+          <a href="#work">أعمالنا</a>
+          <a href="#contact">تواصل</a>
+        </div>
+        <button class="menu-btn" aria-expanded="false" aria-controls="mobile">القائمة</button>
+      </nav>
+      <div id="mobile" class="mobile">
+        <a href="#about">من نحن</a>
+        <a href="#services">الخدمات</a>
+        <a href="#work">أعمالنا</a>
+        <a href="#contact">تواصل</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="tag"><span class="dot"></span> جاهز للنشر</span>
+      <h1>نصمم مواقع أنيقة <br> وسريعة تدعم الجوال.</h1>
+      <p>قالب عربي مخصص لك: عدّل الاسم، الخدمات، وصوّر أعمالك.. ثم انشره مجانًا على GitHub Pages بخطوات بسيطة.</p>
+      <a class="btn" href="#contact">اطلب موقعك الآن</a>
+    </section>
+
+    <section id="about" class="sec grid">
+      <div class="col-6">
+        <div class="card">
+          <h2>من نحن</h2>
+          <p class="muted">نموذج تعريفي قصير عنك أو عن نشاطك. اكتب هنا رسالتك وما الذي يميّزك عن غيرك.</p>
+          <div class="feature">
+            <div class="ic">⚡</div>
+            <div><strong>سرعة التحميل</strong><div class="muted">الكود نظيف وخفيف بدون مكتبات ثقيلة.</div></div>
+          </div>
+          <div class="feature">
+            <div class="ic">📱</div>
+            <div><strong>متجاوب بالكامل</strong><div class="muted">يعمل بسلاسة على الجوال والتابلت والكمبيوتر.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <h2>معلومات سريعة</h2>
+          <ul class="muted">
+            <li>المدينة: الرياض</li>
+            <li>ساعات العمل: 9 صباحًا - 6 مساءً</li>
+            <li>البريد: <a href="mailto:you@example.com">you@example.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="sec">
+      <h2>الخدمات</h2>
+      <div class="grid">
+        <div class="col-4">
+          <div class="card">
+            <h3>موقع تعريفي</h3>
+            <p class="muted">صفحة واحدة أنيقة لعرض خدماتك وروابط التواصل.</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <h3>مدوّنة خفيفة</h3>
+            <p class="muted">مقالات بسيطة بدون لوحة تحكم معقدة (ملفات ماركداون).</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <h3>متجر بسيط</h3>
+            <p class="muted">عرض منتجات وروابط طلب عبر واتساب أو نموذج.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="sec">
+      <h2>أعمالنا</h2>
+      <div class="gallery">
+        <img src="assets/sample1.jpg" alt="معرض 1">
+        <img src="assets/sample2.jpg" alt="معرض 2">
+      </div>
+      <p class="muted">استبدل الصور بصور من أعمالك في مجلد <code>assets</code>.</p>
+    </section>
+
+    <section id="contact" class="sec grid">
+      <div class="col-6">
+        <div class="card">
+          <h2>تواصل معنا</h2>
+          <form id="contactForm" action="#" method="post" onsubmit="return handleSubmit(event)">
+            <div class="row">
+              <input type="text" name="name" placeholder="الاسم" required>
+              <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            </div>
+            <textarea name="message" placeholder="رسالتك" required></textarea>
+            <button class="btn" type="submit">إرسال</button>
+            <p id="formMsg" class="muted"></p>
+          </form>
+          <p class="muted">تريد استقبال الرسائل على بريدك؟ غيّر إعداد <code>handleSubmit</code> في <code>script.js</code> إلى خدمة مثل Formspree.</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <h3>روابط سريعة</h3>
+          <p><a href="#" target="_blank" rel="noopener">واتساب</a> · <a href="#" target="_blank" rel="noopener">إنستقرام</a> · <a href="#" target="_blank" rel="noopener">خريطة الموقع</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> موقعي — كل الحقوق محفوظة.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
